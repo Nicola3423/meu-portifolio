@@ -28,18 +28,25 @@ const skills = [
 
 const projects = [
   {
-    title: "Sistema de Gerenciamento",
-    description: "Plataforma full-stack para gestão empresarial",
-    tech: ["React", "Spring Boot", "PostgreSQL"],
-    link: "#",
-    image: "https://source.unsplash.com/random/800x600?management"
+    title: "Site React",
+    description: "Plataforma em REACT feita para um trabalho juntamente com a salesforce e a Fiap ",
+    tech: ["React", "Figma"],
+    link: "https://sprint4-sigma.vercel.app",
+    image: "/Sales.png"
   },
   {
-    title: "Aplicativo de Tarefas",
-    description: "Task manager com autenticação JWT",
-    tech: ["React", "Java", "MongoDB"],
-    link: "#",
-    image: "https://source.unsplash.com/random/800x600?todo"
+    title: "Projeto Spring Boot", 
+    description: "Projeto em spring para cadastro e gerenciamento de medico e pacientes utilizando um sistema de login com spring security",
+    tech: ["Java", "MySQL", "Spring Boot", "Spring Security", "JPA Hibernate", "Lombok", "Swagger", "SOLID", "Teste Unitarios"],
+    link: "https://github.com/Nicola3423/API-MEDICOS",
+    image: "https://cdn-icons-png.flaticon.com/512/226/226777.png"
+  },
+  {
+    title: "Projeto em C# MVC", 
+    description: "Projeto em C# MVC para cadastro e gerenciamento de medico e pacientes utilizando swagger para documentar a API e Logger Manager para gerenciar os logs da aplicação. Trabalho feito juntamente com a Fiap ",
+    tech: ["C#", "Oracle SQL", "MVC", "Swagger", "EnityFramework", "Logger Manager"],
+    link: "https://github.com/Nicola3423/Sprint03-dotnet",
+    image: "/Odontologico.png"
   }
 ];
 
@@ -156,61 +163,75 @@ const App: React.FC = () => {
       </section>
 
       {/* Seção Sobre */}
-       <section id="sobre" className="about-section">
-        <h2 className="section-title">Minha Jornada</h2>
-        <div className="about-content">
-          <div className="about-image-container">
-            <img 
-              src={profileImg} 
-              alt="Nicola" 
-              className="about-profile-image"
-            />
-            <div className="about-highlights">
-              <div className="highlight-item">
-                <i className="fas fa-gamepad"></i>
-                <span>Início com Jogos</span>
-              </div>
-              <div className="highlight-item">
-                <i className="fas fa-graduation-cap"></i>
-                <span>Formação em Andamento</span>
-              </div>
-              <div className="highlight-item">
-                <i className="fas fa-code"></i>
-                <span>+5 Projetos</span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="about-text-container">
-            <p className="about-text">
-              Desde criança fascinado por jogos e tecnologia, minha jornada na programação começou 
-              tentando entender como os games eram criados. Aos 15 anos, desenvolvi meu primeiro 
-              script em Python e desde então não parei mais.
-            </p>
-            
-            <div className="about-cards">
-              <div className="about-card">
-                <h3>🚀 Metas Atuais</h3>
-                <ul>
-                  <li>Desenvolver sistemas escaláveis</li>
-                  <li>Aprofundar em arquitetura de software</li>
-                  <li> Estudando os fundamentos do SOLID</li>
-                </ul>
-              </div>
-              
-              <div className="about-card">
-                <h3>📚 Estudando Agora</h3>
-                <ul>
-                  <li>Design Patterns</li>
-                  <li>Testes Automatizados</li>
-                  <li>Arquitetura de Software</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+<section id="sobre" className="about-section">
+  <h2 className="section-title">Minha Jornada</h2>
+  <div className="about-content">
+    <div className="about-image-container">
+      <img 
+        src={profileImg} 
+        alt="Nicola" 
+        className="about-profile-image"
+      />
+      <div className="about-highlights">
+        <div className="highlight-item">
+          <i className="fas fa-gamepad"></i>
+          <span>Início com Jogos</span>
         </div>
-      </section>
+        <div className="highlight-item">
+          <i className="fas fa-briefcase"></i>
+          <span>Experiência Profissional</span>
+        </div>
+        <div className="highlight-item">
+          <i className="fas fa-graduation-cap"></i>
+          <span>Formação em Andamento</span>
+        </div>
+      </div>
+    </div>
+    
+    <div className="about-text-container">
+      <p className="about-text">
+        Desde criança fascinado por jogos e tecnologia, minha jornada na programação começou 
+        tentando entender como os games eram criados. Aos 15 anos, desenvolvi meu primeiro 
+        script em Python e desde então não parei mais. Atualmente estou consolidando meu 
+        aprendizado atuando como estagiário em desenvolvimento.
+      </p>
+      
+      <div className="about-cards">
+        <div className="about-card">
+          <h3>💼 Experiência Profissional</h3>
+          <ul>
+            <li>
+              <strong>Império Inteligência</strong><br/>
+              Estagiário de Desenvolvimento C# MVC<br/>
+              03/06/2024 - Atualmente<br/>
+              • Suporte e manutenção em aplicações corporativas<br/>
+              • Desenvolvimento de novas funcionalidades<br/>
+              • Participação em projetos de modernização de sistemas
+            </li>
+          </ul>
+        </div>
 
+        <div className="about-card">
+          <h3>🚀 Metas Atuais</h3>
+          <ul>
+            <li>Desenvolver sistemas escaláveis</li>
+            <li>Aprofundar em arquitetura de software</li>
+            <li>Estudando os fundamentos do SOLID</li>
+          </ul>
+        </div>
+        
+        <div className="about-card">
+          <h3>📚 Estudando Agora</h3>
+          <ul>
+            <li>Design Patterns</li>
+            <li>Testes Automatizados</li>
+            <li>Arquitetura de Software</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Adicionar Seção de Contato */}
       <section id="contact" className="contact-section">

@@ -341,12 +341,39 @@ html {
   background: var(--card-bg);
 }
 
+.about-card li strong {
+  color: var(--primary-color);
+  display: block;
+  margin: 0.5rem 0;
+}
+
+.about-card li {
+  line-height: 1.6;
+  padding: 0.8rem;
+  background: rgba(43, 170, 146, 0.05);
+  border-radius: 8px;
+  margin: 0.5rem 0;
+}
+
+.about-card li br {
+  content: " ";
+  display: block;
+  margin: 0.3rem 0;
+}
+
+.about-image-container {
+  position: relative;
+  z-index: 2; /* Mantém a imagem acima do texto */
+}
+
 .about-content {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 3rem;
+  position: relative;
+  z-index: 1;
 }
 
 .about-profile-image {
@@ -360,6 +387,13 @@ html {
   margin-top: 2rem;
   display: grid;
   gap: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+.about-text-container {
+  position: relative;
+  z-index: 3; /* Traz o texto para frente */
+  padding-left: 2rem;
 }
 
 .highlight-item {
@@ -368,6 +402,9 @@ html {
   border-radius: 10px;
   text-align: center;
   transition: var(--transition);
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .highlight-item:hover {
@@ -403,11 +440,6 @@ html {
   list-style: none;
 }
 
-.about-card li {
-  margin-bottom: 0.5rem;
-  padding-left: 1.5rem;
-  position: relative;
-}
 
 .about-card li::before {
   content: "▹";
