@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, animateScroll as scroll } from 'react-scroll';
+import { Link } from 'react-scroll';
 import { useForm } from '@formspree/react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
