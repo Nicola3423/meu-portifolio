@@ -98,7 +98,6 @@ const App: React.FC = () => {
             <Link to="skills" smooth={true} duration={500} onClick={closeMenu}>Habilidades</Link>
             <Link to="projects" smooth={true} duration={500} onClick={closeMenu}>Projetos</Link>
             <Link to="sobre" smooth={true} duration={500} onClick={closeMenu}>Sobre</Link>
-            <Link to="contact" smooth={true} duration={500} onClick={closeMenu}>Contato</Link>
             <button className="dark-mode-toggle" onClick={toggleDarkMode}>
               {isDarkMode ? '🌞' : '🌙'}
             </button>
