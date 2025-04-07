@@ -17,6 +17,8 @@ import springBootImg from './images/SpringBoot.jpg';
 import tsImg from './images/TypeScript.png';
 import profileImg from './images/profile.jpg';
 import mvcImg from './images/MVC.png';
+import sales from './images/Sales.png';
+import odontologico from './images/Odontologico.png';
 
 const skills = [
   { name: 'Java', image: javaImg },
@@ -32,7 +34,7 @@ const projects = [
     description: "Plataforma em REACT feita para um trabalho juntamente com a salesforce e a Fiap ",
     tech: ["React", "Figma"],
     link: "https://sprint4-sigma.vercel.app",
-    image: "/Sales.png"
+    image: sales
   },
   {
     title: "Projeto Spring Boot", 
@@ -46,14 +48,14 @@ const projects = [
     description: "Projeto em C# MVC para cadastro e gerenciamento de medico e pacientes utilizando swagger para documentar a API e Logger Manager para gerenciar os logs da aplicação. Trabalho feito juntamente com a Fiap ",
     tech: ["C#", "Oracle SQL", "MVC", "Swagger", "EnityFramework", "Logger Manager"],
     link: "https://github.com/Nicola3423/Sprint03-dotnet",
-    image: "/Odontologico.png"
+    image: odontologico
   }
 ];
 
 const App: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [state, handleSubmit] = useForm('mjkyallg');
+  const [state, handleSubmit] = useForm('https://formspree.io/f/mjkyallg');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
