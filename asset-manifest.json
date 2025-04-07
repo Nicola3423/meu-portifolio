@@ -1,8 +1,9 @@
 {
   "files": {
-    "main.css": "/meu-portifolio/static/css/main.a4dbdd9e.css",
-    "main.js": "/meu-portifolio/static/js/main.752f3f58.js",
+    "main.css": "/meu-portifolio/static/css/main.21224b77.css",
+    "main.js": "/meu-portifolio/static/js/main.89e7a0c6.js",
     "static/js/453.f4d220d9.chunk.js": "/meu-portifolio/static/js/453.f4d220d9.chunk.js",
+    "static/media/Sales.png": "/meu-portifolio/static/media/Sales.077c14c47b6bbc464cc4.png",
     "static/media/fa-solid-900.ttf": "/meu-portifolio/static/media/fa-solid-900.2582b0e4bcf85eceead0.ttf",
     "static/media/fa-brands-400.ttf": "/meu-portifolio/static/media/fa-brands-400.1815e00441357e01619e.ttf",
     "static/media/fa-solid-900.woff2": "/meu-portifolio/static/media/fa-solid-900.2463b90d9a316e4e5294.woff2",
@@ -10,18 +11,19 @@
     "static/media/MVC.png": "/meu-portifolio/static/media/MVC.9d6d9da04bf4b384fbe5.png",
     "static/media/fa-regular-400.ttf": "/meu-portifolio/static/media/fa-regular-400.914997e1bdfc990d0897.ttf",
     "static/media/profile.jpg": "/meu-portifolio/static/media/profile.22cb47b0a10d2dbdb2aa.jpg",
+    "static/media/Odontologico.png": "/meu-portifolio/static/media/Odontologico.b332dda685b3b2e1c0c5.png",
     "static/media/fa-regular-400.woff2": "/meu-portifolio/static/media/fa-regular-400.89999bdf5d835c012025.woff2",
     "static/media/TypeScript.png": "/meu-portifolio/static/media/TypeScript.cd9d8a6692375a0def07.png",
     "static/media/fa-v4compatibility.ttf": "/meu-portifolio/static/media/fa-v4compatibility.da94ef451f4969af06e6.ttf",
     "static/media/fa-v4compatibility.woff2": "/meu-portifolio/static/media/fa-v4compatibility.ea8f94e1d22e0d35ccd4.woff2",
     "static/media/React.svg": "/meu-portifolio/static/media/React.903d77ad940b12efaddde2484397ad4a.svg",
     "index.html": "/meu-portifolio/index.html",
-    "main.a4dbdd9e.css.map": "/meu-portifolio/static/css/main.a4dbdd9e.css.map",
-    "main.752f3f58.js.map": "/meu-portifolio/static/js/main.752f3f58.js.map",
+    "main.21224b77.css.map": "/meu-portifolio/static/css/main.21224b77.css.map",
+    "main.89e7a0c6.js.map": "/meu-portifolio/static/js/main.89e7a0c6.js.map",
     "453.f4d220d9.chunk.js.map": "/meu-portifolio/static/js/453.f4d220d9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a4dbdd9e.css",
-    "static/js/main.752f3f58.js"
+    "static/css/main.21224b77.css",
+    "static/js/main.89e7a0c6.js"
   ]
 }
