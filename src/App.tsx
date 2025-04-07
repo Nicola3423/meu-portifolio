@@ -19,6 +19,7 @@ import profileImg from './images/profile.jpg';
 import mvcImg from './images/MVC.png';
 import sales from './images/Sales.png';
 import odontologico from './images/Odontologico.png';
+import CurriculoPdf from './statics/Curriculo.pdf';
 
 const skills = [
   { name: 'Java', image: javaImg },
@@ -55,7 +56,7 @@ const projects = [
 const App: React.FC = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [state, handleSubmit] = useForm('https://formspree.io/f/mjkyallg');
+
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -119,8 +120,12 @@ const App: React.FC = () => {
             <p>Especializado em criar soluções modernas com React, TypeScript, Java e C# MVC</p>
             <div className="cta-buttons">
               <Link to="projects" smooth={true} className="btn btn-primary">Ver Projetos</Link>
-              <a href="/Curriculo.pdf" className="btn btn-outline" download>
-                <i className="fas fa-download mr-2"></i>  Baixar Currículo
+              <a 
+                href={CurriculoPdf} 
+                className="btn btn-outline"
+                download="Curriculo_Nicola_Garofalo.pdf"
+              >
+                <i className="fas fa-download mr-2"></i>Baixar Currículo
               </a>
             </div>
           </div>
@@ -165,97 +170,76 @@ const App: React.FC = () => {
       </section>
 
       {/* Seção Sobre */}
-<section id="sobre" className="about-section">
-  <h2 className="section-title">Minha Jornada</h2>
-  <div className="about-content">
-    <div className="about-image-container">
-      <img 
-        src={profileImg} 
-        alt="Nicola" 
-        className="about-profile-image"
-      />
-      <div className="about-highlights">
-        <div className="highlight-item">
-          <i className="fas fa-gamepad"></i>
-          <span>Início com Jogos</span>
-        </div>
-        <div className="highlight-item">
-          <i className="fas fa-briefcase"></i>
-          <span>Experiência Profissional</span>
-        </div>
-        <div className="highlight-item">
-          <i className="fas fa-graduation-cap"></i>
-          <span>Formação em Andamento</span>
-        </div>
-      </div>
-    </div>
-    
-    <div className="about-text-container">
-      <p className="about-text">
-        Desde criança fascinado por jogos e tecnologia, minha jornada na programação começou 
-        tentando entender como os games eram criados. Aos 15 anos, desenvolvi meu primeiro 
-        script em Python e desde então não parei mais. Atualmente estou consolidando meu 
-        aprendizado atuando como estagiário em desenvolvimento.
-      </p>
-      
-      <div className="about-cards">
-        <div className="about-card">
-          <h3>💼 Experiência Profissional</h3>
-          <ul>
-            <li>
-              <strong>Império Inteligência</strong><br/>
-              Estagiário de Desenvolvimento C# MVC<br/>
-              03/06/2024 - Atualmente<br/>
-              • Suporte e manutenção em aplicações corporativas<br/>
-              • Desenvolvimento de novas funcionalidades<br/>
-              • Participação em projetos de modernização de sistemas
-            </li>
-          </ul>
-        </div>
+        <section id="sobre" className="about-section">
+          <h2 className="section-title">Minha Jornada</h2>
+          <div className="about-content">
+            <div className="about-image-container">
+              <img 
+                src={profileImg} 
+                alt="Nicola" 
+                className="about-profile-image"
+              />
+              <div className="about-highlights">
+                <div className="highlight-item">
+                  <i className="fas fa-gamepad"></i>
+                  <span>Início com Jogos</span>
+                </div>
+                <div className="highlight-item">
+                  <i className="fas fa-briefcase"></i>
+                  <span>Experiência Profissional</span>
+                </div>
+                <div className="highlight-item">
+                  <i className="fas fa-graduation-cap"></i>
+                  <span>Formação em Andamento</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="about-text-container">
+              <p className="about-text">
+                Desde criança fascinado por jogos e tecnologia, minha jornada na programação começou 
+                tentando entender como os games eram criados. Aos 15 anos, desenvolvi meu primeiro 
+                script em Python e desde então não parei mais. Atualmente estou consolidando meu 
+                aprendizado atuando como estagiário em desenvolvimento.
+              </p>
+              
+              <div className="about-cards">
+                <div className="about-card">
+                  <h3>💼 Experiência Profissional</h3>
+                  <ul>
+                    <li>
+                      <strong>Império Inteligência</strong><br/>
+                      Estagiário de Desenvolvimento C# MVC<br/>
+                      03/06/2024 - Atualmente<br/>
+                      • Suporte e manutenção em aplicações corporativas<br/>
+                      • Desenvolvimento de novas funcionalidades<br/>
+                      • Participação em projetos de modernização de sistemas
+                    </li>
+                  </ul>
+                </div>
 
-        <div className="about-card">
-          <h3>🚀 Metas Atuais</h3>
-          <ul>
-            <li>Desenvolver sistemas escaláveis</li>
-            <li>Aprofundar em arquitetura de software</li>
-            <li>Estudando os fundamentos do SOLID</li>
-          </ul>
-        </div>
-        
-        <div className="about-card">
-          <h3>📚 Estudando Agora</h3>
-          <ul>
-            <li>Design Patterns</li>
-            <li>Testes Automatizados</li>
-            <li>Arquitetura de Software</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+                <div className="about-card">
+                  <h3>🚀 Metas Atuais</h3>
+                  <ul>
+                    <li>Desenvolver sistemas escaláveis</li>
+                    <li>Aprofundar em arquitetura de software</li>
+                    <li>Estudando os fundamentos do SOLID</li>
+                  </ul>
+                </div>
+                
+                <div className="about-card">
+                  <h3>📚 Estudando Agora</h3>
+                  <ul>
+                    <li>Design Patterns</li>
+                    <li>Testes Automatizados</li>
+                    <li>Arquitetura de Software</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      {/* Adicionar Seção de Contato */}
-      <section id="contact" className="contact-section">
-        <h2 className="section-title">Contato</h2>
-        <div className="contact-content">
-          <form onSubmit={handleSubmit} className="contact-form">
-            <div className="form-group">
-              <input type="text" name="name" placeholder="Seu nome" required />
-            </div>
-            <div className="form-group">
-              <input type="email" name="email" placeholder="Seu e-mail" required />
-            </div>
-            <div className="form-group">
-              <textarea name="message" placeholder="Sua mensagem" required></textarea>
-            </div>
-            <button type="submit" disabled={state.submitting} className="btn btn-primary">
-              Enviar Mensagem
-            </button>
-            {state.succeeded && <p className="success-message">Mensagem enviada com sucesso!</p>}
-          </form>
-        </div>
-      </section>
 
       {/* Rodapé */}
       <footer className="main-footer">
