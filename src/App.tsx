@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
-import { useForm } from '@formspree/react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Helmet } from 'react-helmet-async';
@@ -89,27 +88,37 @@ const App: React.FC = () => {
 
       {isLoading && <Loader />}
 
-      <nav className="main-nav">
-        <div className="nav-content">
-          <Link to="home" smooth={true} className="logo">Portfolio</Link>
-          
-          <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-            <Link to="home" smooth={true} duration={500} onClick={closeMenu}>Home</Link>
-            <Link to="skills" smooth={true} duration={500} onClick={closeMenu}>Habilidades</Link>
-            <Link to="projects" smooth={true} duration={500} onClick={closeMenu}>Projetos</Link>
-            <Link to="sobre" smooth={true} duration={500} onClick={closeMenu}>Sobre</Link>
-            <button className="dark-mode-toggle" onClick={toggleDarkMode}>
-              {isDarkMode ? '🌞' : '🌙'}
-            </button>
-          </div>
-
-          <button className={`hamburger ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
-            <span></span>
-            <span></span>
-            <span></span>
+          <nav className="main-nav">
+      <div className="nav-content">
+        <Link to="home" smooth={true} className="logo">Portfolio</Link>
+        
+        <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+          <Link to="home" smooth={true} duration={500} onClick={closeMenu}>Home</Link>
+          <Link to="skills" smooth={true} duration={500} onClick={closeMenu}>Habilidades</Link>
+          <Link to="projects" smooth={true} duration={500} onClick={closeMenu}>Projetos</Link>
+          <Link to="sobre" smooth={true} duration={500} onClick={closeMenu}>Sobre</Link>
+          <button className="dark-mode-toggle" onClick={toggleDarkMode}>
+            {isDarkMode ? '🌞' : '🌙'}
           </button>
         </div>
-      </nav>
+
+        <button 
+          className={`hamburger ${isMenuOpen ? 'active' : ''}`} 
+          onClick={toggleMenu}
+          aria-label="Menu mobile"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        
+        {/* Adicione o overlay */}
+        <div 
+          className={`nav-overlay ${isMenuOpen ? 'active' : ''}`} 
+          onClick={closeMenu}
+        />
+      </div>
+    </nav>
 
       <header id="home" className="hero-section">
         <div className="hero-content" data-aos="fade-up">
