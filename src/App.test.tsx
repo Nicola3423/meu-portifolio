@@ -2,8 +2,11 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('apresenta o posicionamento profissional de Nicola', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(
+    screen.getByRole('heading', {
+      name: /desenvolvedor c# full stack que conecta negócio, código e experiência/i,
+    })
+  ).toBeInTheDocument();
 });

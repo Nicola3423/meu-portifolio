@@ -1,288 +1,492 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-scroll';
+import React, { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { Helmet } from 'react-helmet-async';
-import Loader from './Loader';
-import "@fortawesome/fontawesome-free/css/all.min.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import './styles.css';
 
-// Importe as imagens
-import javaImg from './images/Java.png';
-import reactImg from './images/React.svg';
-import springBootImg from './images/SpringBoot.jpg';
-import tsImg from './images/TypeScript.png';
 import profileImg from './images/profile.jpg';
-import mvcImg from './images/MVC.png';
-import sales from './images/Sales.png';
-import odontologico from './images/Odontologico.png';
+import odontologicoImg from './images/Odontologico.png';
 import CurriculoPdf from './statics/Curriculo.pdf';
 
-const skills = [
-  { name: 'Java', image: javaImg },
-  { name: 'React', image: reactImg },
-  { name: 'Spring Boot', image: springBootImg },
-  { name: 'TypeScript', image: tsImg },
-  { name: 'MVC', image: mvcImg }
+const navItems = [
+  { label: 'Projetos', href: '#projetos' },
+  { label: 'Experiência', href: '#experiencia' },
+  { label: 'Stack', href: '#stack' },
+  { label: 'Sobre', href: '#sobre' },
 ];
 
 const projects = [
   {
-    title: "Site React",
-    description: "Plataforma em REACT feita para um trabalho juntamente com a salesforce e a Fiap ",
-    tech: ["React", "Figma"],
-    link: "https://sprint4-sigma.vercel.app",
-    image: sales
+    number: '01',
+    context: 'Projeto acadêmico FIAP',
+    category: 'Full stack',
+    title: 'Sistema de Odontologia',
+    description:
+      'Aplicação em C# MVC para gerenciar médicos e pacientes, com banco Oracle, documentação de API e logs estruturados.',
+    tech: ['C#', 'ASP.NET MVC', 'Oracle SQL', 'Swagger', 'Entity Framework'],
+    link: 'https://github.com/Nicola3423/Sprint03-dotnet',
+    linkLabel: 'Explorar código no GitHub',
+    image: odontologicoImg,
+    imageAlt: 'Tela inicial do sistema de odontologia',
   },
-  {
-    title: "Projeto Spring Boot", 
-    description: "Projeto em spring para cadastro e gerenciamento de medico e pacientes utilizando um sistema de login com spring security",
-    tech: ["Java", "MySQL", "Spring Boot", "Spring Security", "JPA Hibernate", "Lombok", "Swagger", "SOLID", "Teste Unitarios"],
-    link: "https://github.com/Nicola3423/API-MEDICOS",
-    image: "https://cdn-icons-png.flaticon.com/512/226/226777.png"
-  },
-  {
-    title: "Projeto em C# MVC", 
-    description: "Projeto em C# MVC para cadastro e gerenciamento de medico e pacientes utilizando swagger para documentar a API e Logger Manager para gerenciar os logs da aplicação. Trabalho feito juntamente com a Fiap ",
-    tech: ["C#", "Oracle SQL", "MVC", "Swagger", "EnityFramework", "Logger Manager"],
-    link: "https://github.com/Nicola3423/Sprint03-dotnet",
-    image: odontologico
-  }
 ];
 
+const capabilityGroups = [
+  {
+    number: '01',
+    icon: 'fa-solid fa-code',
+    title: 'Back-end & APIs',
+    description: 'Regras de negócio, autenticação e integrações bem documentadas.',
+    skills: ['C#', '.NET 8', 'ASP.NET Core MVC', 'Web API', 'REST', 'JWT', 'Swagger'],
+  },
+  {
+    number: '02',
+    icon: 'fa-solid fa-window-maximize',
+    title: 'Interfaces',
+    description: 'Experiências responsivas conectadas ao contexto do produto.',
+    skills: ['Angular', 'JavaScript', 'Razor', 'Bootstrap', 'jQuery', 'HTML & CSS'],
+  },
+  {
+    number: '03',
+    icon: 'fa-solid fa-database',
+    title: 'Dados & Arquitetura',
+    description: 'Estruturas sustentáveis, consultas eficientes e código legível.',
+    skills: ['SQL Server', 'Entity Framework Core', 'DDD', 'SOLID', 'Clean Code', 'xUnit'],
+  },
+  {
+    number: '04',
+    icon: 'fa-solid fa-code-branch',
+    title: 'Entrega & Colaboração',
+    description: 'Do versionamento à entrega contínua em times ágeis.',
+    skills: ['Azure DevOps', 'Git', 'Pipelines', 'Scrum', 'Azure', 'Redis · familiaridade'],
+  },
+];
+
+const experiences = [
+  {
+    period: '08/2025 — atual',
+    role: 'Desenvolvedor Full Stack',
+    company: 'Império Inteligência',
+    badge: 'Promoção interna',
+    highlights: [
+      'Evolução de aplicações corporativas em C# e .NET 8, do banco de dados à interface.',
+      'Desenvolvimento de APIs REST com JWT, DTOs e documentação Swagger/OpenAPI.',
+      'Interfaces e painéis com Angular, MVC, Bootstrap e jQuery, além de testes xUnit em pipelines.',
+    ],
+  },
+  {
+    period: '06/2024 — 08/2025',
+    role: 'Estagiário em Desenvolvimento .NET',
+    company: 'Império Inteligência',
+    highlights: [
+      'Migração, suporte e modernização de módulos corporativos para .NET 8.',
+      'Correção de bugs e melhorias em sistemas integrados ao SQL Server, com foco em Clean Code.',
+    ],
+  },
+];
+
+const getInitialTheme = () => {
+  if (typeof window === 'undefined') return false;
+
+  const storedTheme = window.localStorage.getItem('portfolio-theme');
+  if (storedTheme) return storedTheme === 'dark';
+
+  return window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
+};
+
 const App: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(getInitialTheme);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
-    AOS.init({ duration: 1000, once: true });
-    setTimeout(() => setIsLoading(false), 2000);
-    
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    setIsDarkMode(prefersDark);
-    if (prefersDark) document.documentElement.classList.add('dark-mode');
-
-    return () => {};
+    AOS.init({ duration: 650, easing: 'ease-out-cubic', once: true, offset: 70 });
   }, []);
 
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle('dark-mode');
-  };
+  useEffect(() => {
+    document.documentElement.dataset.theme = isDarkMode ? 'dark' : 'light';
+    window.localStorage.setItem('portfolio-theme', isDarkMode ? 'dark' : 'light');
+  }, [isDarkMode]);
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsMenuOpen(false);
+    };
+
+    window.addEventListener('keydown', closeOnEscape);
+    return () => {
+      window.removeEventListener('keydown', closeOnEscape);
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
+
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <div className={`app-container ${isDarkMode ? 'dark-mode' : ''}`}>
-      <Helmet>
-        <title>Portfolio Nicola - Desenvolvedor Full Stack</title>
-        <meta name="description" content="Portfolio de Nicola Garofalo - Desenvolvedor Full Stack com experiência em React, TypeScript e Java" />
-        <meta property="og:title" content="Portfolio Nicola Garofalo" />
-        <meta property="og:image" content={profileImg} />
-      </Helmet>
+    <div className="app-shell">
+      <a className="skip-link" href="#conteudo">
+        Pular para o conteúdo
+      </a>
 
-      {isLoading && <Loader />}
+      <nav className="main-nav" aria-label="Navegação principal">
+        <div className="nav-content">
+          <a className="brand" href="#inicio" onClick={closeMenu} aria-label="Nicola Garofalo — início">
+            <span className="brand-mark" aria-hidden="true">NG</span>
+            <span className="brand-name">Nicola Garofalo</span>
+          </a>
 
-          <nav className="main-nav">
-      <div className="nav-content">
-        <Link to="home" smooth={true} className="logo">Portfolio</Link>
-        
-        <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-          <Link to="home" smooth={true} duration={500} onClick={closeMenu}>Home</Link>
-          <Link to="skills" smooth={true} duration={500} onClick={closeMenu}>Habilidades</Link>
-          <Link to="projects" smooth={true} duration={500} onClick={closeMenu}>Projetos</Link>
-          <Link to="sobre" smooth={true} duration={500} onClick={closeMenu}>Sobre</Link>
-          <button className="dark-mode-toggle" onClick={toggleDarkMode}>
-            {isDarkMode ? '🌞' : '🌙'}
-          </button>
-        </div>
-
-        <button 
-          className={`hamburger ${isMenuOpen ? 'active' : ''}`} 
-          onClick={toggleMenu}
-          aria-label="Menu mobile"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        
-        {/* Adicione o overlay */}
-        <div 
-          className={`nav-overlay ${isMenuOpen ? 'active' : ''}`} 
-          onClick={closeMenu}
-        />
-      </div>
-    </nav>
-
-      <header id="home" className="hero-section">
-        <div className="hero-content" data-aos="fade-up">
-          <img src={profileImg} alt="Perfil" className="profile-image" />
-          <div className="hero-text">
-            <h1>Desenvolvedor Full-Stack</h1>
-            <p>Especializado em criar soluções modernas com React, TypeScript, Java e C# MVC</p>
-            <div className="cta-buttons">
-              <Link to="projects" smooth={true} className="btn btn-primary">Ver Projetos</Link>
-              <a 
-                href={CurriculoPdf} 
-                className="btn btn-outline"
-                download="Curriculo_Nicola_Garofalo.pdf"
-              >
-                <i className="fas fa-download mr-2"></i>Baixar Currículo
+          <div id="primary-navigation" className={`nav-links ${isMenuOpen ? 'is-open' : ''}`}>
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href} onClick={closeMenu}>
+                {item.label}
               </a>
-            </div>
+            ))}
+            <a className="nav-contact" href="#contato" onClick={closeMenu}>
+              Vamos conversar
+            </a>
+          </div>
+
+          <div className="nav-actions">
+            <button
+              className="theme-toggle"
+              type="button"
+              onClick={() => setIsDarkMode((current) => !current)}
+              aria-label={isDarkMode ? 'Ativar tema claro' : 'Ativar tema escuro'}
+              aria-pressed={isDarkMode}
+              title={isDarkMode ? 'Ativar tema claro' : 'Ativar tema escuro'}
+            >
+              <i className={isDarkMode ? 'fa-solid fa-sun' : 'fa-solid fa-moon'} aria-hidden="true" />
+            </button>
+
+            <button
+              className={`menu-toggle ${isMenuOpen ? 'is-open' : ''}`}
+              type="button"
+              onClick={() => setIsMenuOpen((current) => !current)}
+              aria-label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+              aria-expanded={isMenuOpen}
+              aria-controls="primary-navigation"
+            >
+              <span />
+              <span />
+              <span />
+            </button>
           </div>
         </div>
-      </header>
+      </nav>
 
-      {/* Seção Skills */}
-      <section id="skills" className="skills-section">
-  <h2 className="section-title">Tecnologias</h2>
-  <div className="skills-grid">
-    {skills.map((skill) => (
-      <div key={skill.name} className="skill-card">
-        <img src={skill.image} alt={skill.name} className="skill-image" />
-        <h3>{skill.name}</h3>
-      </div>
-    ))}
-  </div>
-</section>
+      {isMenuOpen && (
+        <button className="nav-overlay" type="button" onClick={closeMenu} aria-label="Fechar menu" />
+      )}
 
-      {/* Seção Projetos */}
-      <section id="projects" className="projects-section">
-        <h2 className="section-title">Projetos Recentes</h2>
-        <div className="projects-grid">
-          {projects.map((project, index) => (
-            <div key={index} className="project-card">
-              <div className="project-image-container">
-                <img src={project.image} alt={project.title} />
-              </div>
-              <div className="project-content">
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
-                <div className="tech-tags">
-                  {project.tech.map((tech, i) => (
-                    <span key={i} className="tech-tag">{tech}</span>
-                  ))}
-                </div>
-                <a href={project.link} className="btn btn-primary">Detalhes</a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      <main id="conteudo">
+        <header id="inicio" className="hero-section">
+          <div className="hero-grid" aria-hidden="true" />
+          <div className="hero-glow hero-glow-one" aria-hidden="true" />
+          <div className="hero-glow hero-glow-two" aria-hidden="true" />
 
-      {/* Seção Sobre */}
-        <section id="sobre" className="about-section">
-          <h2 className="section-title">Minha Jornada</h2>
-          <div className="about-content">
-            <div className="about-image-container">
-              <img 
-                src={profileImg} 
-                alt="Nicola" 
-                className="about-profile-image"
-              />
-              <div className="about-highlights">
-                <div className="highlight-item">
-                  <i className="fas fa-gamepad"></i>
-                  <span>Início com Jogos</span>
-                </div>
-                <div className="highlight-item">
-                  <i className="fas fa-briefcase"></i>
-                  <span>Experiência Profissional</span>
-                </div>
-                <div className="highlight-item">
-                  <i className="fas fa-graduation-cap"></i>
-                  <span>Formação em Andamento</span>
-                </div>
-              </div>
-            </div>
-            
-            <div className="about-text-container">
-              <p className="about-text">
-                Desde criança fascinado por jogos e tecnologia, minha jornada na programação começou 
-                tentando entender como os games eram criados. Aos 15 anos, desenvolvi meu primeiro 
-                script em Python e desde então não parei mais. Atualmente estou consolidando meu 
-                aprendizado atuando como estagiário em desenvolvimento.
+          <div className="section-container hero-content">
+            <div className="hero-copy" data-aos="fade-up">
+              <p className="eyebrow">
+                <span className="eyebrow-dot" /> São Paulo, SP · Desenvolvimento de software
               </p>
-              
-              <div className="about-cards">
-                <div className="about-card">
-                  <h3>💼 Experiência Profissional</h3>
-                  <ul>
-                    <li>
-                      <strong>Império Inteligência</strong><br/>
-                      Estagiário de Desenvolvimento C# MVC<br/>
-                      03/06/2024 - Atualmente<br/>
-                      • Suporte e manutenção em aplicações corporativas<br/>
-                      • Desenvolvimento de novas funcionalidades<br/>
-                      • Participação em projetos de modernização de sistemas
-                    </li>
-                  </ul>
-                </div>
+              <h1>
+                Desenvolvedor C# Full Stack que conecta <span>negócio, código e experiência.</span>
+              </h1>
+              <p className="hero-description">
+                Atuo de ponta a ponta em aplicações corporativas com .NET 8, Angular e SQL Server — de APIs
+                seguras e testes automatizados a interfaces que simplificam rotinas.
+              </p>
 
-                <div className="about-card">
-                  <h3>🚀 Metas Atuais</h3>
-                  <ul>
-                    <li>Desenvolver sistemas escaláveis</li>
-                    <li>Aprofundar em arquitetura de software</li>
-                    <li>Estudando os fundamentos do SOLID</li>
-                  </ul>
-                </div>
-                
-                <div className="about-card">
-                  <h3>📚 Estudando Agora</h3>
-                  <ul>
-                    <li>Design Patterns</li>
-                    <li>Testes Automatizados</li>
-                    <li>Arquitetura de Software</li>
-                  </ul>
+              <div className="hero-actions">
+                <a className="button button-primary" href="#projetos">
+                  Conhecer projetos <i className="fa-solid fa-arrow-down" aria-hidden="true" />
+                </a>
+                <a className="button button-secondary" href={CurriculoPdf} download="Curriculo_Nicola_Garofalo.pdf">
+                  <i className="fa-solid fa-download" aria-hidden="true" /> Baixar currículo
+                </a>
+              </div>
+
+              <div className="hero-links" aria-label="Links profissionais">
+                <a href="mailto:montecravonicola@gmail.com">
+                  <i className="fa-regular fa-envelope" aria-hidden="true" /> E-mail
+                </a>
+                <a href="https://github.com/Nicola3423" target="_blank" rel="noopener noreferrer">
+                  <i className="fa-brands fa-github" aria-hidden="true" /> GitHub
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/nicola-monte-cravo-garofalo-3757902b0/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="fa-brands fa-linkedin-in" aria-hidden="true" /> LinkedIn
+                </a>
+              </div>
+            </div>
+
+            <div className="hero-visual" data-aos="fade-left" data-aos-delay="100">
+              <div className="profile-frame">
+                <div className="profile-accent" aria-hidden="true" />
+                <img
+                  src={profileImg}
+                  alt="Nicola Garofalo, desenvolvedor full stack"
+                  className="profile-image"
+                  width="800"
+                  height="800"
+                />
+                <div className="profile-caption">
+                  <span className="status-indicator" aria-hidden="true" />
+                  <div>
+                    <strong>.NET 8 + Angular</strong>
+                    <span>stack principal</span>
+                  </div>
                 </div>
               </div>
+
+              <div className="code-note code-note-top" aria-hidden="true">
+                <span>01</span>
+                <strong>API</strong>
+                <small>segura & documentada</small>
+              </div>
+              <div className="code-note code-note-bottom" aria-hidden="true">
+                <span>02</span>
+                <strong>UI</strong>
+                <small>clara & responsiva</small>
+              </div>
+            </div>
+          </div>
+
+          <div className="section-container expertise-strip" data-aos="fade-up" data-aos-delay="150">
+            <span className="expertise-label">Atuação de ponta a ponta</span>
+            <div><strong>Back-end</strong><span>.NET 8</span></div>
+            <div><strong>Front-end</strong><span>Angular</span></div>
+            <div><strong>Dados</strong><span>SQL Server</span></div>
+            <div><strong>Qualidade</strong><span>xUnit</span></div>
+          </div>
+        </header>
+
+        <section id="projetos" className="section projects-section">
+          <div className="section-container">
+            <div className="section-heading" data-aos="fade-up">
+              <div>
+                <p className="section-kicker">Projeto selecionado</p>
+                <h2>Um projeto que representa meu repertório técnico.</h2>
+              </div>
+              <p>
+                Uma aplicação completa em C# que reúne interface, regras de negócio, persistência e documentação.
+              </p>
+            </div>
+
+            <div className="projects-grid">
+              {projects.map((project) => (
+                <article
+                  key={project.title}
+                  className="project-card project-card-only"
+                  data-aos="fade-up"
+                >
+                  <div className="project-visual">
+                    <span className="project-number">{project.number}</span>
+                    <img
+                      src={project.image}
+                      alt={project.imageAlt}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+
+                  <div className="project-content">
+                    <div className="project-meta">
+                      <span>{project.context}</span>
+                      <span>{project.category}</span>
+                    </div>
+                    <h3>{project.title}</h3>
+                    <p>{project.description}</p>
+                    <ul className="tech-list" aria-label={`Tecnologias do projeto ${project.title}`}>
+                      {project.tech.map((tech) => <li key={tech}>{tech}</li>)}
+                    </ul>
+                    <a className="text-link" href={project.link} target="_blank" rel="noopener noreferrer">
+                      {project.linkLabel} <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" />
+                    </a>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
 
+        <section id="experiencia" className="section experience-section">
+          <div className="section-container experience-layout">
+            <div className="experience-intro" data-aos="fade-right">
+              <p className="section-kicker">Experiência</p>
+              <h2>Crescimento construído na prática.</h2>
+              <p>
+                Minha trajetória combina evolução técnica, proximidade com regras de negócio e participação no
+                ciclo completo de produtos corporativos.
+              </p>
 
-      {/* Rodapé */}
-      <footer className="main-footer">
-    <div className="footer-container">
-        <div className="footer-content">
-            <div className="footer-section">
-                <h4>Redes Sociais</h4>
-                <div className="social-links">
-                    <a href="https://github.com/Nicola3423" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
-                        <i className="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/nicola-monte-cravo-garofalo-3757902b0/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-                        <i className="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://wa.me/5511981383338" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
-                        <i className="fab fa-whatsapp"></i>
-                    </a>
+              <div className="education-card">
+                <div className="education-icon" aria-hidden="true">
+                  <i className="fa-solid fa-graduation-cap" />
                 </div>
+                <div>
+                  <span>Formação · 2025</span>
+                  <strong>Análise e Desenvolvimento de Sistemas</strong>
+                  <p>FIAP · Inglês intermediário</p>
+                </div>
+              </div>
             </div>
-            
-            <div className="footer-section">
-                <h4>Contato</h4>
-                <p>montecravonicola@gmail.com</p>
-                <p>+55 (11) 98138-3338</p>
+
+            <div className="timeline">
+              {experiences.map((experience, index) => (
+                <article className="timeline-item" key={experience.period} data-aos="fade-up" data-aos-delay={index * 80}>
+                  <div className="timeline-marker" aria-hidden="true"><span /></div>
+                  <div className="timeline-card">
+                    <div className="timeline-topline">
+                      <span className="timeline-period">{experience.period}</span>
+                      {experience.badge && <span className="timeline-badge">{experience.badge}</span>}
+                    </div>
+                    <h3>{experience.role}</h3>
+                    <p className="timeline-company">{experience.company}</p>
+                    <ul>
+                      {experience.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+                    </ul>
+                  </div>
+                </article>
+              ))}
             </div>
+          </div>
+        </section>
+
+        <section id="stack" className="section stack-section">
+          <div className="section-container">
+            <div className="section-heading stack-heading" data-aos="fade-up">
+              <div>
+                <p className="section-kicker">Stack & competências</p>
+                <h2>Ferramentas organizadas pelo que ajudam a resolver.</h2>
+              </div>
+              <p>
+                Mais do que uma lista de tecnologias, este é o conjunto que uso para construir, manter e evoluir
+                software com consistência.
+              </p>
+            </div>
+
+            <div className="capabilities-grid">
+              {capabilityGroups.map((group, index) => (
+                <article className="capability-card" key={group.title} data-aos="fade-up" data-aos-delay={index * 60}>
+                  <div className="capability-topline">
+                    <span>{group.number}</span>
+                    <i className={group.icon} aria-hidden="true" />
+                  </div>
+                  <h3>{group.title}</h3>
+                  <p>{group.description}</p>
+                  <ul>
+                    {group.skills.map((skill) => <li key={skill}>{skill}</li>)}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="sobre" className="section about-section">
+          <div className="section-container about-layout">
+            <div className="about-statement" data-aos="fade-right">
+              <p className="section-kicker">Sobre mim</p>
+              <h2>A curiosidade virou profissão. A evolução continua.</h2>
+              <p>
+                Meu interesse por tecnologia começou com jogos e com a vontade de entender como experiências
+                digitais eram construídas. Hoje, essa mesma curiosidade guia meu trabalho com sistemas que
+                precisam ser confiáveis, claros e fáceis de evoluir.
+              </p>
+              <a className="text-link" href={CurriculoPdf} target="_blank" rel="noopener noreferrer">
+                Abrir currículo completo <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" />
+              </a>
+            </div>
+
+            <div className="principles-grid">
+              <article data-aos="fade-up">
+                <span>01</span>
+                <i className="fa-solid fa-diagram-project" aria-hidden="true" />
+                <h3>Contexto antes do código</h3>
+                <p>Entender a regra de negócio para transformar complexidade em uma solução útil.</p>
+              </article>
+              <article data-aos="fade-up" data-aos-delay="70">
+                <span>02</span>
+                <i className="fa-solid fa-shield-halved" aria-hidden="true" />
+                <h3>Qualidade por padrão</h3>
+                <p>Clean Code, SOLID, testes e documentação como parte natural da entrega.</p>
+              </article>
+              <article data-aos="fade-up" data-aos-delay="140">
+                <span>03</span>
+                <i className="fa-solid fa-arrow-trend-up" aria-hidden="true" />
+                <h3>Evolução contínua</h3>
+                <p>Aprender, testar e refinar — tanto o produto quanto a forma de construí-lo.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="contato" className="contact-section">
+          <div className="section-container">
+            <div className="contact-card" data-aos="fade-up">
+              <div className="contact-grid" aria-hidden="true" />
+              <div className="contact-copy">
+                <p className="section-kicker">Vamos conversar</p>
+                <h2>Tem um desafio em mente? Quero ouvir sobre ele.</h2>
+                <p>
+                  Estou sempre aberto a trocar ideias sobre produtos, engenharia de software e novas
+                  oportunidades profissionais.
+                </p>
+              </div>
+              <div className="contact-actions">
+                <a className="button button-light" href="mailto:montecravonicola@gmail.com">
+                  <i className="fa-regular fa-envelope" aria-hidden="true" /> Enviar e-mail
+                </a>
+                <a
+                  className="button button-dark-outline"
+                  href="https://www.linkedin.com/in/nicola-monte-cravo-garofalo-3757902b0/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i className="fa-brands fa-linkedin-in" aria-hidden="true" /> LinkedIn
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="main-footer">
+        <div className="section-container footer-content">
+          <a className="brand footer-brand" href="#inicio" aria-label="Voltar ao início">
+            <span className="brand-mark" aria-hidden="true">NG</span>
+            <span className="brand-name">Nicola Garofalo</span>
+          </a>
+          <p>Desenvolvedor C# Full Stack · São Paulo, SP</p>
+          <div className="footer-social" aria-label="Redes profissionais">
+            <a href="https://github.com/Nicola3423" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <i className="fa-brands fa-github" aria-hidden="true" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/nicola-monte-cravo-garofalo-3757902b0/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+            >
+              <i className="fa-brands fa-linkedin-in" aria-hidden="true" />
+            </a>
+            <a href="mailto:montecravonicola@gmail.com" aria-label="E-mail">
+              <i className="fa-regular fa-envelope" aria-hidden="true" />
+            </a>
+          </div>
         </div>
-        
-        <div className="footer-bottom">
-            <p className="copyright">
-                &copy; {new Date().getFullYear()} Nicola Monte Cravo Garofalo. Todos os direitos reservados.
-            </p>
+        <div className="section-container footer-bottom">
+          <p>© {new Date().getFullYear()} Nicola Monte Cravo Garofalo.</p>
+          <a href="#inicio">Voltar ao topo <i className="fa-solid fa-arrow-up" aria-hidden="true" /></a>
         </div>
-    </div>
-</footer>
+      </footer>
     </div>
   );
 };
+
 export default App;
