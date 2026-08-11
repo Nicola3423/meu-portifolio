@@ -105,6 +105,9 @@ const App: React.FC = () => {
   useEffect(() => {
     document.documentElement.dataset.theme = isDarkMode ? 'dark' : 'light';
     window.localStorage.setItem('portfolio-theme', isDarkMode ? 'dark' : 'light');
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute('content', isDarkMode ? '#0a1117' : '#f4f8f7');
   }, [isDarkMode]);
 
   useEffect(() => {
@@ -199,6 +202,10 @@ const App: React.FC = () => {
               <p className="hero-greeting">Olá, eu sou Nicola<span>.</span></p>
               <h1>Desenvolvedor <span>C# Full Stack</span></h1>
               <p className="hero-stack-line">.NET 8 · Angular · SQL Server</p>
+              <p className="hero-summary">
+                Desenvolvo aplicações web completas e fáceis de usar, conectando regras de negócio,
+                interfaces e bancos de dados.
+              </p>
 
               <div className="hero-tech-row" aria-label="Principais tecnologias">
                 <span className="hero-tech-glyph hero-tech-text" title="C#">C#</span>
