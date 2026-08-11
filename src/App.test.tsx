@@ -6,7 +6,7 @@ test('apresenta o posicionamento profissional de Nicola', () => {
   render(<App />);
   expect(
     screen.getByRole('heading', {
-      name: /desenvolvedor c# full stack que conecta negócio, código e experiência/i,
+      name: /desenvolvedor c# full stack/i,
     })
   ).toBeInTheDocument();
 });

@@ -9,10 +9,10 @@ import odontologicoImg from './images/Odontologico.png';
 import CurriculoPdf from './statics/Curriculo.pdf';
 
 const navItems = [
-  { label: 'Projetos', href: '#projetos' },
-  { label: 'Experiência', href: '#experiencia' },
-  { label: 'Stack', href: '#stack' },
   { label: 'Sobre', href: '#sobre' },
+  { label: 'Experiência', href: '#experiencia' },
+  { label: 'Formação', href: '#formacao' },
+  { label: 'Projetos', href: '#projetos' },
 ];
 
 const projects = [
@@ -132,8 +132,8 @@ const App: React.FC = () => {
       <nav className="main-nav" aria-label="Navegação principal">
         <div className="nav-content">
           <a className="brand" href="#inicio" onClick={closeMenu} aria-label="Nicola Garofalo — início">
-            <span className="brand-mark" aria-hidden="true">NG</span>
-            <span className="brand-name">Nicola Garofalo</span>
+            <span className="brand-name">Nicola</span>
+            <span className="brand-slash" aria-hidden="true">/</span>
           </a>
 
           <div id="primary-navigation" className={`nav-links ${isMenuOpen ? 'is-open' : ''}`}>
@@ -143,7 +143,7 @@ const App: React.FC = () => {
               </a>
             ))}
             <a className="nav-contact" href="#contato" onClick={closeMenu}>
-              Vamos conversar
+              Contato
             </a>
           </div>
 
@@ -181,88 +181,54 @@ const App: React.FC = () => {
 
       <main id="conteudo">
         <header id="inicio" className="hero-section">
-          <div className="hero-grid" aria-hidden="true" />
-          <div className="hero-glow hero-glow-one" aria-hidden="true" />
-          <div className="hero-glow hero-glow-two" aria-hidden="true" />
-
           <div className="section-container hero-content">
-            <div className="hero-copy" data-aos="fade-up">
-              <p className="eyebrow">
-                <span className="eyebrow-dot" /> São Paulo, SP · Desenvolvimento de software
-              </p>
-              <h1>
-                Desenvolvedor C# Full Stack que conecta <span>negócio, código e experiência.</span>
-              </h1>
-              <p className="hero-description">
-                Atuo de ponta a ponta em aplicações corporativas com .NET 8, Angular e SQL Server — de APIs
-                seguras e testes automatizados a interfaces que simplificam rotinas.
-              </p>
-
-              <div className="hero-actions">
-                <a className="button button-primary" href="#projetos">
-                  Conhecer projetos <i className="fa-solid fa-arrow-down" aria-hidden="true" />
-                </a>
-                <a className="button button-secondary" href={CurriculoPdf} download="Curriculo_Nicola_Garofalo.pdf">
-                  <i className="fa-solid fa-download" aria-hidden="true" /> Baixar currículo
-                </a>
-              </div>
-
-              <div className="hero-links" aria-label="Links profissionais">
-                <a href="mailto:montecravonicola@gmail.com">
-                  <i className="fa-regular fa-envelope" aria-hidden="true" /> E-mail
-                </a>
-                <a href="https://github.com/Nicola3423" target="_blank" rel="noopener noreferrer">
-                  <i className="fa-brands fa-github" aria-hidden="true" /> GitHub
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/nicola-monte-cravo-garofalo-3757902b0/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i className="fa-brands fa-linkedin-in" aria-hidden="true" /> LinkedIn
-                </a>
-              </div>
-            </div>
-
-            <div className="hero-visual" data-aos="fade-left" data-aos-delay="100">
-              <div className="profile-frame">
-                <div className="profile-accent" aria-hidden="true" />
+            <div className="hero-code-frame" data-aos="fade-right" aria-label="Retrato de Nicola Garofalo">
+              <div className="code-frame-border">
                 <img
                   src={profileImg}
                   alt="Nicola Garofalo, desenvolvedor full stack"
-                  className="profile-image"
+                  className="code-frame-image"
                   width="800"
                   height="800"
                 />
-                <div className="profile-caption">
-                  <span className="status-indicator" aria-hidden="true" />
-                  <div>
-                    <strong>.NET 8 + Angular</strong>
-                    <span>stack principal</span>
-                  </div>
-                </div>
+              </div>
+              <span className="code-frame-symbol" aria-hidden="true">&lt;/&gt;</span>
+            </div>
+
+            <div className="hero-intro" data-aos="fade-left" data-aos-delay="100">
+              <p className="hero-greeting">Olá, eu sou Nicola<span>.</span></p>
+              <h1>Desenvolvedor <span>C# Full Stack</span></h1>
+              <p className="hero-stack-line">.NET 8 · Angular · SQL Server</p>
+
+              <div className="hero-tech-row" aria-label="Principais tecnologias">
+                <span className="hero-tech-glyph hero-tech-text" title="C#">C#</span>
+                <span className="hero-tech-glyph hero-tech-text" title=".NET 8">.NET</span>
+                <span className="hero-tech-glyph" title="Angular" aria-label="Angular">
+                  <i className="fa-brands fa-angular" aria-hidden="true" />
+                </span>
+                <span className="hero-tech-glyph" title="SQL Server" aria-label="SQL Server">
+                  <i className="fa-solid fa-database" aria-hidden="true" />
+                </span>
+                <span className="hero-tech-glyph" title="Git" aria-label="Git">
+                  <i className="fa-brands fa-git-alt" aria-hidden="true" />
+                </span>
               </div>
 
-              <div className="code-note code-note-top" aria-hidden="true">
-                <span>01</span>
-                <strong>API</strong>
-                <small>segura & documentada</small>
-              </div>
-              <div className="code-note code-note-bottom" aria-hidden="true">
-                <span>02</span>
-                <strong>UI</strong>
-                <small>clara & responsiva</small>
+              <div className="hero-quick-links">
+                <a href="#projetos">
+                  Ver projetos <i className="fa-solid fa-arrow-down" aria-hidden="true" />
+                </a>
+                <a href={CurriculoPdf} download="Curriculo_Nicola_Garofalo.pdf">
+                  Baixar currículo <i className="fa-solid fa-download" aria-hidden="true" />
+                </a>
               </div>
             </div>
           </div>
 
-          <div className="section-container expertise-strip" data-aos="fade-up" data-aos-delay="150">
-            <span className="expertise-label">Atuação de ponta a ponta</span>
-            <div><strong>Back-end</strong><span>.NET 8</span></div>
-            <div><strong>Front-end</strong><span>Angular</span></div>
-            <div><strong>Dados</strong><span>SQL Server</span></div>
-            <div><strong>Qualidade</strong><span>xUnit</span></div>
-          </div>
+          <a className="hero-scroll-cue" href="#projetos" aria-label="Ir para a próxima seção">
+            <span>Conheça meu trabalho</span>
+            <i className="fa-solid fa-arrow-down" aria-hidden="true" />
+          </a>
         </header>
 
         <section id="projetos" className="section projects-section">
@@ -324,7 +290,7 @@ const App: React.FC = () => {
                 ciclo completo de produtos corporativos.
               </p>
 
-              <div className="education-card">
+              <div id="formacao" className="education-card">
                 <div className="education-icon" aria-hidden="true">
                   <i className="fa-solid fa-graduation-cap" />
                 </div>
