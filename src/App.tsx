@@ -7,6 +7,7 @@ import './styles.css';
 import profileImg from './images/profile.jpg';
 import odontologicoImg from './images/Odontologico.png';
 import CurriculoPdf from './statics/Curriculo.pdf';
+import { HeroAnimation } from './HeroAnimation';
 
 const navItems = [
   { label: 'Sobre', href: '#sobre' },
@@ -185,18 +186,7 @@ const App: React.FC = () => {
       <main id="conteudo">
         <header id="inicio" className="hero-section">
           <div className="section-container hero-content">
-            <div className="hero-code-frame" data-aos="fade-right" aria-label="Retrato de Nicola Garofalo">
-              <div className="code-frame-border">
-                <img
-                  src={profileImg}
-                  alt="Nicola Garofalo, desenvolvedor full stack"
-                  className="code-frame-image"
-                  width="800"
-                  height="800"
-                />
-              </div>
-              <span className="code-frame-symbol" aria-hidden="true">&lt;/&gt;</span>
-            </div>
+            <HeroAnimation profileImg={profileImg} />
 
             <div className="hero-intro" data-aos="fade-left" data-aos-delay="100">
               <p className="hero-greeting">Olá, eu sou Nicola<span>.</span></p>
