@@ -278,7 +278,7 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          <a className="hero-scroll-cue" href="#projetos" aria-label="Ir para a próxima seção">
+          <a className="hero-scroll-cue" href="#stack" aria-label="Ir para Stack e competências">
             <span>Conheça meu trabalho</span>
             <i className="fa-solid fa-arrow-down" aria-hidden="true" />
           </a>

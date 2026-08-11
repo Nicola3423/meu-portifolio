@@ -33,6 +33,14 @@ test('usa um visual leve em CSS no hero, sem SVG inline', () => {
   expect(container.querySelector('.hero-orbit-system')).toBeInTheDocument();
 });
 
+test('direciona Conheça meu trabalho para Stack e competências', () => {
+  render(<App />);
+  expect(screen.getByRole('link', { name: /ir para stack e competências/i })).toHaveAttribute(
+    'href',
+    '#stack'
+  );
+});
+
 test('alterna entre os temas claro e escuro', () => {
   render(<App />);
 
