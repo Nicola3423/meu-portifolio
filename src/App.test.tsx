@@ -14,6 +14,23 @@ test('apresenta o posicionamento profissional de Nicola', () => {
       name: /desenvolvedor c# full stack/i,
     })
   ).toBeInTheDocument();
+  expect(screen.getByText(/aplicações corporativas de ponta a ponta/i)).toBeInTheDocument();
+});
+
+test('apresenta competências técnicas com contexto para recrutadores', () => {
+  render(<App />);
+
+  expect(screen.getByRole('heading', { name: '.NET 8' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'Angular' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'SQL Server' })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: 'Arquitetura' })).toBeInTheDocument();
+  expect(screen.getByText(/testes em pipelines, com familiaridade em Azure/i)).toBeInTheDocument();
+});
+
+test('usa um visual leve em CSS no hero, sem SVG inline', () => {
+  const { container } = render(<App />);
+  expect(container.querySelector('.hero-visual-wrapper svg')).not.toBeInTheDocument();
+  expect(container.querySelector('.hero-orbit-system')).toBeInTheDocument();
 });
 
 test('alterna entre os temas claro e escuro', () => {

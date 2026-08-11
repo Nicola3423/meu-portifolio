@@ -36,30 +36,82 @@ const capabilityGroups = [
   {
     number: '01',
     icon: 'fa-solid fa-code',
-    title: 'Back-end & APIs',
-    description: 'Regras de negócio, autenticação e integrações bem documentadas.',
-    skills: ['C#', '.NET 8', 'ASP.NET Core MVC', 'Web API', 'REST', 'JWT', 'Swagger'],
+    title: '.NET 8',
+    subtitle: 'Back-end & APIs',
+    points: [
+      {
+        title: 'C# e .NET 8',
+        description: 'Desenvolvimento e evolução de sistemas corporativos e regras de negócio.',
+      },
+      {
+        title: 'ASP.NET Core',
+        description: 'Aplicações MVC, Web API, controllers, DTOs e endpoints REST.',
+      },
+      {
+        title: 'APIs seguras',
+        description: 'JWT, respostas HTTP padronizadas e documentação com Swagger/OpenAPI.',
+      },
+    ],
   },
   {
     number: '02',
     icon: 'fa-solid fa-window-maximize',
-    title: 'Interfaces',
-    description: 'Experiências responsivas conectadas ao contexto do produto.',
-    skills: ['Angular', 'JavaScript', 'Razor', 'Bootstrap', 'jQuery', 'HTML & CSS'],
+    title: 'Angular',
+    subtitle: 'Front-end Engineering',
+    points: [
+      {
+        title: 'Angular e JavaScript',
+        description: 'Interfaces e painéis integrados a APIs e aos fluxos do produto.',
+      },
+      {
+        title: 'MVC e Razor',
+        description: 'Telas conectadas às regras de negócio e aos dados da aplicação.',
+      },
+      {
+        title: 'Bootstrap e jQuery',
+        description: 'Evolução de componentes e comportamentos em sistemas corporativos.',
+      },
+    ],
   },
   {
     number: '03',
     icon: 'fa-solid fa-database',
-    title: 'Dados & Arquitetura',
-    description: 'Estruturas sustentáveis, consultas eficientes e código legível.',
-    skills: ['SQL Server', 'Entity Framework Core', 'DDD', 'SOLID', 'Clean Code', 'xUnit'],
+    title: 'SQL Server',
+    subtitle: 'Dados & Persistência',
+    points: [
+      {
+        title: 'SQL e modelagem',
+        description: 'Modelagem relacional, manipulação de dados e consultas de alta performance.',
+      },
+      {
+        title: 'Views e Triggers',
+        description: 'Automação de status e apoio à integridade dos dados corporativos.',
+      },
+      {
+        title: 'Entity Framework Core',
+        description: 'Persistência e integração entre aplicações .NET e bancos relacionais.',
+      },
+    ],
   },
   {
     number: '04',
     icon: 'fa-solid fa-code-branch',
-    title: 'Entrega & Colaboração',
-    description: 'Do versionamento à entrega contínua em times ágeis.',
-    skills: ['Azure DevOps', 'Git', 'Pipelines', 'Scrum', 'Azure', 'Redis · familiaridade'],
+    title: 'Arquitetura',
+    subtitle: 'Qualidade & Entrega',
+    points: [
+      {
+        title: 'DDD, SOLID e DI',
+        description: 'Domínios organizados, responsabilidades claras e código desacoplado.',
+      },
+      {
+        title: 'Clean Code e xUnit',
+        description: 'Código legível e testes automatizados para validar regras críticas.',
+      },
+      {
+        title: 'Azure DevOps',
+        description: 'Git, Scrum e testes em pipelines, com familiaridade em Azure, Redis e mensageria.',
+      },
+    ],
   },
 ];
 
@@ -68,11 +120,13 @@ const experiences = [
     period: '08/2025 — atual',
     role: 'Desenvolvedor Full Stack',
     company: 'Império Inteligência',
-    badge: 'Promoção interna',
+    badge: 'Atuação atual',
     highlights: [
-      'Evolução de aplicações corporativas em C# e .NET 8, do banco de dados à interface.',
-      'Desenvolvimento de APIs REST com JWT, DTOs e documentação Swagger/OpenAPI.',
-      'Interfaces e painéis com Angular, MVC, Bootstrap e jQuery, além de testes xUnit em pipelines.',
+      'Desenvolvimento e evolução de sistemas corporativos em C# e .NET 8, com regras de negócio em ASP.NET Core MVC.',
+      'Construção e consumo de APIs REST com controllers, DTOs, JWT, status HTTP padronizados e Swagger/OpenAPI.',
+      'Atuação com SQL Server, integridade de dados, Views e consultas de alta performance.',
+      'Interfaces e painéis com Angular, MVC, Razor, Bootstrap e jQuery.',
+      'Testes automatizados com xUnit integrados a pipelines de Continuous Delivery no Azure DevOps.',
     ],
   },
   {
@@ -80,8 +134,9 @@ const experiences = [
     role: 'Estagiário em Desenvolvimento .NET',
     company: 'Império Inteligência',
     highlights: [
-      'Migração, suporte e modernização de módulos corporativos para .NET 8.',
-      'Correção de bugs e melhorias em sistemas integrados ao SQL Server, com foco em Clean Code.',
+      'Participação na migração, manutenção e suporte de módulos corporativos MVC modernizados para .NET 8.',
+      'Correção de bugs, implementação de melhorias e manipulação de dados com SQL Server.',
+      'Aplicação de Clean Code e preparação de ambientes integrados alinhados à evolução para Azure.',
     ],
   },
 ];
@@ -193,8 +248,9 @@ const App: React.FC = () => {
               <h1>Desenvolvedor <span>C# Full Stack</span></h1>
               <p className="hero-stack-line">.NET 8 · Angular · SQL Server</p>
               <p className="hero-summary">
-                Desenvolvo aplicações web completas e fáceis de usar, conectando regras de negócio,
-                interfaces e bancos de dados.
+                Desenvolvo e evoluo aplicações corporativas de ponta a ponta, conectando APIs seguras,
+                regras de negócio, interfaces em Angular e dados em SQL Server. Trabalho com foco em código
+                claro, testes e soluções fáceis de manter.
               </p>
 
               <div className="hero-tech-row" aria-label="Principais tecnologias">
@@ -283,8 +339,8 @@ const App: React.FC = () => {
               <p className="section-kicker">Experiência</p>
               <h2>Crescimento construído na prática.</h2>
               <p>
-                Minha trajetória combina evolução técnica, proximidade com regras de negócio e participação no
-                ciclo completo de produtos corporativos.
+                Da modernização de módulos para .NET 8 à entrega de APIs, interfaces e testes automatizados,
+                minha trajetória reúne experiência no ciclo completo de aplicações corporativas.
               </p>
 
               <div id="formacao" className="education-card">
@@ -292,9 +348,12 @@ const App: React.FC = () => {
                   <i className="fa-solid fa-graduation-cap" />
                 </div>
                 <div>
-                  <span>Formação · 2025</span>
+                  <span>Formação · concluída em 08/2025</span>
                   <strong>Análise e Desenvolvimento de Sistemas</strong>
-                  <p>FIAP · Inglês intermediário</p>
+                  <p>FIAP</p>
+                  <small className="education-language">
+                    <i className="fa-solid fa-language" aria-hidden="true" /> Inglês intermediário
+                  </small>
                 </div>
               </div>
             </div>
@@ -325,25 +384,37 @@ const App: React.FC = () => {
             <div className="section-heading stack-heading" data-aos="fade-up">
               <div>
                 <p className="section-kicker">Stack & competências</p>
-                <h2>Ferramentas organizadas pelo que ajudam a resolver.</h2>
+                <h2>Competências que sustentam minhas entregas.</h2>
               </div>
               <p>
-                Mais do que uma lista de tecnologias, este é o conjunto que uso para construir, manter e evoluir
-                software com consistência.
+                Um panorama direto da minha atuação em back-end, interfaces, dados, arquitetura, qualidade e
+                entrega contínua.
               </p>
             </div>
 
             <div className="capabilities-grid">
               {capabilityGroups.map((group, index) => (
                 <article className="capability-card" key={group.title} data-aos="fade-up" data-aos-delay={index * 60}>
-                  <div className="capability-topline">
-                    <span>{group.number}</span>
-                    <i className={group.icon} aria-hidden="true" />
+                  <div className="capability-header">
+                    <span className="capability-icon" aria-hidden="true">
+                      <i className={group.icon} />
+                    </span>
+                    <div>
+                      <h3>{group.title}</h3>
+                      <p>{group.subtitle}</p>
+                    </div>
+                    <span className="capability-number" aria-hidden="true">{group.number}</span>
                   </div>
-                  <h3>{group.title}</h3>
-                  <p>{group.description}</p>
-                  <ul>
-                    {group.skills.map((skill) => <li key={skill}>{skill}</li>)}
+                  <ul className="capability-points">
+                    {group.points.map((point) => (
+                      <li key={point.title}>
+                        <i className="fa-solid fa-arrow-right" aria-hidden="true" />
+                        <div>
+                          <strong>{point.title}</strong>
+                          <span>{point.description}</span>
+                        </div>
+                      </li>
+                    ))}
                   </ul>
                 </article>
               ))}
@@ -354,13 +425,32 @@ const App: React.FC = () => {
         <section id="sobre" className="section about-section">
           <div className="section-container about-layout">
             <div className="about-statement" data-aos="fade-right">
-              <p className="section-kicker">Sobre mim</p>
-              <h2>A curiosidade virou profissão. A evolução continua.</h2>
+              <p className="section-kicker">Resumo profissional</p>
+              <h2>Experiência Full Stack, da regra de negócio à entrega.</h2>
               <p>
-                Meu interesse por tecnologia começou com jogos e com a vontade de entender como experiências
-                digitais eram construídas. Hoje, essa mesma curiosidade guia meu trabalho com sistemas que
-                precisam ser confiáveis, claros e fáceis de evoluir.
+                Sou Desenvolvedor C# Full Stack com experiência na construção e evolução de aplicações
+                corporativas em .NET 8. Atuo com ASP.NET Core MVC e Web API, APIs REST com JWT, DTOs e
+                Swagger/OpenAPI, além de SQL Server e interfaces com Angular, Razor, Bootstrap e jQuery.
               </p>
+              <p>
+                Minha rotina também envolve DDD, SOLID, Clean Code, injeção de dependência, testes xUnit e
+                pipelines no Azure DevOps. Sou formado em Análise e Desenvolvimento de Sistemas pela FIAP e
+                possuo inglês intermediário.
+              </p>
+              <dl className="career-facts" aria-label="Informações profissionais em destaque">
+                <div>
+                  <dt>Desde 2024</dt>
+                  <dd>Experiência corporativa</dd>
+                </div>
+                <div>
+                  <dt>FIAP</dt>
+                  <dd>Formação em ADS</dd>
+                </div>
+                <div>
+                  <dt>São Paulo</dt>
+                  <dd>SP, Brasil</dd>
+                </div>
+              </dl>
               <a className="text-link" href={CurriculoPdf} target="_blank" rel="noopener noreferrer">
                 Abrir currículo completo <i className="fa-solid fa-arrow-up-right-from-square" aria-hidden="true" />
               </a>
@@ -370,20 +460,20 @@ const App: React.FC = () => {
               <article data-aos="fade-up">
                 <span>01</span>
                 <i className="fa-solid fa-diagram-project" aria-hidden="true" />
-                <h3>Contexto antes do código</h3>
-                <p>Entender a regra de negócio para transformar complexidade em uma solução útil.</p>
+                <h3>Visão de ponta a ponta</h3>
+                <p>Atuação do banco de dados à interface, sem perder o contexto das regras de negócio.</p>
               </article>
               <article data-aos="fade-up" data-aos-delay="70">
                 <span>02</span>
-                <i className="fa-solid fa-shield-halved" aria-hidden="true" />
-                <h3>Qualidade por padrão</h3>
-                <p>Clean Code, SOLID, testes e documentação como parte natural da entrega.</p>
+                <i className="fa-solid fa-arrows-rotate" aria-hidden="true" />
+                <h3>Modernização de sistemas</h3>
+                <p>Experiência na migração, manutenção e evolução de módulos corporativos para .NET 8.</p>
               </article>
               <article data-aos="fade-up" data-aos-delay="140">
                 <span>03</span>
-                <i className="fa-solid fa-arrow-trend-up" aria-hidden="true" />
-                <h3>Evolução contínua</h3>
-                <p>Aprender, testar e refinar — tanto o produto quanto a forma de construí-lo.</p>
+                <i className="fa-solid fa-shield-halved" aria-hidden="true" />
+                <h3>Qualidade na entrega</h3>
+                <p>Clean Code, SOLID, documentação, testes automatizados e pipelines no fluxo de trabalho.</p>
               </article>
             </div>
           </div>
